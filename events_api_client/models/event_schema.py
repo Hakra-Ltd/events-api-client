@@ -28,17 +28,20 @@ class EventSchema(BaseModel):
     EventSchema
     """ # noqa: E501
     id: StrictStr
-    vivid_id: StrictStr
+    event_id: StrictStr
+    venue_id: StrictStr
     event_name: StrictStr
     venue_name: Optional[StrictStr]
     city: Optional[StrictStr]
     state: Optional[StrictStr]
+    url: Optional[StrictStr]
     country: Optional[StrictStr]
     date_time: Optional[datetime]
+    timezone_date_time: Optional[datetime]
     keywords: Optional[StrictStr]
     performer_name: Optional[StrictStr]
     exchange: Optional[StrictStr]
-    __properties: ClassVar[List[str]] = ["id", "vivid_id", "event_name", "venue_name", "city", "state", "country", "date_time", "keywords", "performer_name", "exchange"]
+    __properties: ClassVar[List[str]] = ["id", "event_id", "venue_id", "event_name", "venue_name", "city", "state", "url", "country", "date_time", "timezone_date_time", "keywords", "performer_name", "exchange"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,6 +97,11 @@ class EventSchema(BaseModel):
         if self.state is None and "state" in self.model_fields_set:
             _dict['state'] = None
 
+        # set to None if url (nullable) is None
+        # and model_fields_set contains the field
+        if self.url is None and "url" in self.model_fields_set:
+            _dict['url'] = None
+
         # set to None if country (nullable) is None
         # and model_fields_set contains the field
         if self.country is None and "country" in self.model_fields_set:
@@ -103,6 +111,11 @@ class EventSchema(BaseModel):
         # and model_fields_set contains the field
         if self.date_time is None and "date_time" in self.model_fields_set:
             _dict['date_time'] = None
+
+        # set to None if timezone_date_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.timezone_date_time is None and "timezone_date_time" in self.model_fields_set:
+            _dict['timezone_date_time'] = None
 
         # set to None if keywords (nullable) is None
         # and model_fields_set contains the field
@@ -132,13 +145,16 @@ class EventSchema(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "vivid_id": obj.get("vivid_id"),
+            "event_id": obj.get("event_id"),
+            "venue_id": obj.get("venue_id"),
             "event_name": obj.get("event_name"),
             "venue_name": obj.get("venue_name"),
             "city": obj.get("city"),
             "state": obj.get("state"),
+            "url": obj.get("url"),
             "country": obj.get("country"),
             "date_time": obj.get("date_time"),
+            "timezone_date_time": obj.get("timezone_date_time"),
             "keywords": obj.get("keywords"),
             "performer_name": obj.get("performer_name"),
             "exchange": obj.get("exchange")

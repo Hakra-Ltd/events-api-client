@@ -250,7 +250,9 @@ class DefaultApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -491,7 +493,9 @@ class DefaultApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -534,9 +538,9 @@ class DefaultApi:
 
 
     @validate_call
-    async def get_event_by_vivid_ids_v1_search_events_vivid_ids_get(
+    async def get_event_by_event_ids_v1_search_events_event_ids_get(
         self,
-        vivid_ids: StrictStr,
+        event_ids: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -550,11 +554,11 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> EventListSchema:
-        """Get Event By Vivid Ids
+        """Get Event By Event Ids
 
 
-        :param vivid_ids: (required)
-        :type vivid_ids: str
+        :param event_ids: (required)
+        :type event_ids: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -577,8 +581,8 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_event_by_vivid_ids_v1_search_events_vivid_ids_get_serialize(
-            vivid_ids=vivid_ids,
+        _param = self._get_event_by_event_ids_v1_search_events_event_ids_get_serialize(
+            event_ids=event_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -601,9 +605,9 @@ class DefaultApi:
 
 
     @validate_call
-    async def get_event_by_vivid_ids_v1_search_events_vivid_ids_get_with_http_info(
+    async def get_event_by_event_ids_v1_search_events_event_ids_get_with_http_info(
         self,
-        vivid_ids: StrictStr,
+        event_ids: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -617,11 +621,11 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[EventListSchema]:
-        """Get Event By Vivid Ids
+        """Get Event By Event Ids
 
 
-        :param vivid_ids: (required)
-        :type vivid_ids: str
+        :param event_ids: (required)
+        :type event_ids: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -644,8 +648,8 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_event_by_vivid_ids_v1_search_events_vivid_ids_get_serialize(
-            vivid_ids=vivid_ids,
+        _param = self._get_event_by_event_ids_v1_search_events_event_ids_get_serialize(
+            event_ids=event_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -668,9 +672,9 @@ class DefaultApi:
 
 
     @validate_call
-    async def get_event_by_vivid_ids_v1_search_events_vivid_ids_get_without_preload_content(
+    async def get_event_by_event_ids_v1_search_events_event_ids_get_without_preload_content(
         self,
-        vivid_ids: StrictStr,
+        event_ids: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -684,11 +688,11 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get Event By Vivid Ids
+        """Get Event By Event Ids
 
 
-        :param vivid_ids: (required)
-        :type vivid_ids: str
+        :param event_ids: (required)
+        :type event_ids: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -711,8 +715,8 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_event_by_vivid_ids_v1_search_events_vivid_ids_get_serialize(
-            vivid_ids=vivid_ids,
+        _param = self._get_event_by_event_ids_v1_search_events_event_ids_get_serialize(
+            event_ids=event_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -730,9 +734,9 @@ class DefaultApi:
         return response_data.response
 
 
-    def _get_event_by_vivid_ids_v1_search_events_vivid_ids_get_serialize(
+    def _get_event_by_event_ids_v1_search_events_event_ids_get_serialize(
         self,
-        vivid_ids,
+        event_ids,
         _request_auth,
         _content_type,
         _headers,
@@ -748,12 +752,14 @@ class DefaultApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if vivid_ids is not None:
-            _path_params['vivid_ids'] = vivid_ids
+        if event_ids is not None:
+            _path_params['event_ids'] = event_ids
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -776,7 +782,7 @@ class DefaultApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/v1/search/events/{vivid_ids}',
+            resource_path='/v1/search/events/{event_ids}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1020,7 +1026,9 @@ class DefaultApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1338,7 +1346,9 @@ class DefaultApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1793,7 +1803,9 @@ class DefaultApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2100,7 +2112,9 @@ class DefaultApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2357,7 +2371,9 @@ class DefaultApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2602,7 +2618,9 @@ class DefaultApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2871,7 +2889,9 @@ class DefaultApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -3149,7 +3169,9 @@ class DefaultApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
